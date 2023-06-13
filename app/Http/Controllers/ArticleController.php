@@ -67,7 +67,6 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        return view('article.show', compact('article'));
     }
 
     /**
@@ -75,8 +74,6 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        Gate::authorize('update', $article);
-        return view('article.edit', compact('article'));
     }
 
     /**
@@ -91,17 +88,8 @@ class ArticleController extends Controller
         //     return abort(403);
         // }
 
-        Gate::authorize('update', $article);
 
-        $article->update([
-            "title" => $request->title,
-            "slug" => Str::slug($request->title),
-            "description" => $request->description,
-            "excerpt" => Str::words($request->description, 30, "..."),
-            "category_id" => $request->category
-        ]);
 
-        return redirect()->route("article.index")->with("message", $article->title . " is updated");
     }
 
     /**
@@ -109,8 +97,5 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        Gate::authorize("delete", $article);
-        $article->delete();
-        return redirect()->route("article.index")->with("message", "Article is deleted");
     }
 }

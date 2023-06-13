@@ -15,9 +15,9 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        $categories = ["Local News", "World News", "Sports", "Foods", "Travel"];
+        $categories = ["Local News","World News","Sports","Foods","Travel"];
         $arr = [];
-        foreach ($categories as $category) {
+        foreach($categories as $category){
             $arr[] = [
                 "title" => $category,
                 "slug" => Str::slug($category),

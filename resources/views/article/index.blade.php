@@ -36,7 +36,7 @@
                                     </span>
                                 </td>
                                 <td>
-                                    {{ $article->category->title ?? 'Unkown' }}
+                                    {{ $article->category->title ?? "Unkown" }}
                                 </td>
 
                                 @can('admin-only')

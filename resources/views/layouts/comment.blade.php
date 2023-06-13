@@ -43,8 +43,7 @@
                             @csrf
                             <input type="hidden" name="parent_id" value="{{ $comment->id }}">
                             <input type="hidden" name="article_id" value={{ $article->id }}>
-                            <textarea name="content" class=" form-control mb-2" rows="2"
-                                placeholder="Reply to {{ $comment->user->name }}'s comment ..."></textarea>
+                            <textarea name="content" class=" form-control mb-2" rows="2" placeholder="Reply to {{ $comment->user->name }}'s comment ..."></textarea>
                             <div class=" d-flex justify-content-between align-items-end">
                                 <p class=" mb-0">Replying as {{ Auth::user()->name }}</p>
                                 <button class="btn btn-sm btn-dark">Reply</button>
@@ -54,36 +53,37 @@
                     @endauth
 
 
-                    @foreach ($comment->replies()->latest('id')->get() as $reply)
-                        <div class=" card ms-4 mt-2">
-                            <div class="card-body ">
-                                <p class=" mb-0">
-                                    <i class="bi bi-reply me-2"></i> {{ $reply->content }}
-                                </p>
+                    @foreach ($comment->replies()->latest("id")->get() as $reply)
 
-                                <div class="">
+                    <div class=" card ms-4 mt-2">
+                        <div class="card-body ">
+                            <p class=" mb-0">
+                                <i class="bi bi-reply me-2"></i> {{ $reply->content }}
+                            </p>
 
-                                    <span class=" badge bg-dark">
-                                        <i class=" bi bi-person"></i> {{ $reply->user->name }}
-                                    </span>
+                            <div class="">
 
-                                    <span class=" badge bg-dark">
-                                        <i class=" bi bi-clock"></i> {{ $reply->created_at->diffForHumans() }}
-                                    </span>
+                                <span class=" badge bg-dark">
+                                    <i class=" bi bi-person"></i> {{ $reply->user->name }}
+                                </span>
 
-                                    @can('delete', $reply)
-                                        <form action="{{ route('comment.destroy', $reply->id) }}" method="post"
-                                            class=" d-inline-block">
-                                            @csrf
-                                            @method('delete')
-                                            <button class=" badge border-0 bg-dark">
-                                                <i class=" bi bi-trash3"></i> Delete
-                                            </button>
-                                        </form>
-                                    @endcan
-                                </div>
+                                <span class=" badge bg-dark">
+                                    <i class=" bi bi-clock"></i> {{ $reply->created_at->diffForHumans() }}
+                                </span>
+
+                                @can('delete', $reply)
+                                    <form action="{{ route('comment.destroy', $reply->id) }}" method="post" class=" d-inline-block">
+                                        @csrf
+                                        @method('delete')
+                                        <button class=" badge border-0 bg-dark">
+                                            <i class=" bi bi-trash3"></i> Delete
+                                        </button>
+                                    </form>
+                                @endcan
                             </div>
                         </div>
+                    </div>
+
                     @endforeach
 
 
@@ -122,4 +122,4 @@
 
 </div>
 
-@vite(['resources/js/reply.js'])
+@vite(["resources/js/reply.js"])

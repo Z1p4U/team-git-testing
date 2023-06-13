@@ -47,11 +47,11 @@
                                             </a>
                                         @endcan
 
-                                        @can('delete', $category)
-                                            <button form="aritcleDeleteFrom{{ $category->id }}"
-                                                class=" btn btn-sm btn-outline-dark">
-                                                <i class=" bi bi-trash3"></i>
-                                            </button>
+                                        @can('delete',$category)
+                                        <button form="aritcleDeleteFrom{{ $category->id }}"
+                                            class=" btn btn-sm btn-outline-dark">
+                                            <i class=" bi bi-trash3"></i>
+                                        </button>
                                         @endcan
 
                                     </div>
