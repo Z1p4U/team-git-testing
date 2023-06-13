@@ -14,13 +14,7 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }} <i class=" bi bi-person"></i>
-
-                    <br>
-
-                    <code>
-                        {{ Auth::user() }}
-                    </code>
+                    {{ __('You are logged in!') }}
                 </div>
             </div>
         </div>

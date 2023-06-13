@@ -29,9 +29,13 @@ Route::resource("comment", CommentController::class)->only(["store", "update", "
 
 Auth::routes();
 
-// Route::middleware(['auth'])->prefix("dashboard")->group(function () {
-//     Route::resource("article", ArticleController::class);
-//     Route::resource("category", CategoryController::class)->middleware("can:viewAny," . Category::class);
-//     Route::get('/home', [HomeController::class, 'index'])->name('home');
-//     Route::get('/user-list', [HomeController::class, 'users'])->name('users')->can('admin-only');
-// });
+Route::middleware(['auth'])->prefix("dashboard")->group(function () {
+    Route::resource("article", ArticleController::class);
+    Route::resource("category", CategoryController::class)->middleware("can:viewAny," . Category::class);
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/user-list', [HomeController::class, 'users'])->name('users')->can('admin-only');
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

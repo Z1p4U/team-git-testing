@@ -17,5 +17,4 @@
     </div>
 
     @include('layouts.comment')
-
 @endsection
